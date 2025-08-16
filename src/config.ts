@@ -4,7 +4,7 @@ import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
   title: "Sigure",
-  subtitle: "Demo Site",
+  subtitle: "Median's Blog",
   lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
   themeColor: {
     hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -16,15 +16,25 @@ export const siteConfig: SiteConfig = {
   },
   favicon: [
     // Leave this array empty to use the default favicon
-    // {
-    //   src: '/favicon/icon.png',    // Path of the favicon, relative to the /public directory
-    //   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
-    //   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
-    // }
+    {
+      src: "/favicon/icon.png", // Path of the favicon, relative to the /public directory
+      // theme: "light", // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
+      // sizes: "32x32", // (Optional) Size of the favicon, set only if you have favicons of different sizes
+    },
   ],
   banner: {
     // Path to the banner images, relative to the /public directory
-    imgList: [`/images/demo-banner-1.webp`, `/images/demo-banner-2.webp`],
+    imgList: [
+      `/bg/bg_1.webp`,
+      `/bg/bg_2.webp`,
+      `/bg/bg_3.webp`,
+      `/bg/bg_4.webp`,
+      `/bg/bg_5.webp`,
+      `/bg/bg_6.webp`,
+      `/bg/bg_7.webp`,
+      `/bg/bg_8.webp`,
+      `/bg/bg_9.webp`,
+    ],
     random: true, // Whether to randomly select a banner image from the list
     height: 65, // Height of the banner in vh, only applies to the home page (default: 65vh)
     extendHeight: 60, // Height of the extended banner in vh, only applies to the home page (default: 60vh)
@@ -44,16 +54,16 @@ export const navBarConfig: NavBarConfig = {
     LinkPreset.About,
     {
       name: "GitHub",
-      url: "https://github.com/saicaca/fuwari", // Internal links should not include the base path, as it is automatically added
+      url: "https://github.com/median-dxz", // Internal links should not include the base path, as it is automatically added
       external: true, // Show an external link icon and will open in a new tab
     },
   ],
 };
 
 export const profileConfig: ProfileConfig = {
-  avatar: "assets/images/demo-avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-  name: "Lorem Ipsum",
-  bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  avatar: "assets/images/avatar@1x.webp", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+  name: "Median",
+  bio: "So everything that make me whole, 今君に捧げよう",
   links: [
     {
       name: "Twitter",
@@ -70,7 +80,7 @@ export const profileConfig: ProfileConfig = {
     {
       name: "GitHub",
       icon: "fa6-brands:github",
-      url: "https://github.com/saicaca/fuwari",
+      url: "https://github.com/median-dxz",
     },
   ],
 };
