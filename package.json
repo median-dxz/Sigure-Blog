@@ -1,5 +1,6 @@
 {
-  "name": "sigure",
+  "name": "@sigure/my-site",
+  "private": true,
   "type": "module",
   "version": "0.1.0",
   "scripts": {
