@@ -1,6 +1,6 @@
 ---
 import type { Page } from "@/pages/[...page].astro";
-import { getPostUrlBySlug } from "@utils/url";
+import { getPostUrlById } from "@utils/url";
 import PostCard from "./PostCard.astro";
 
 const { page } = Astro.props as { page: Page };
@@ -21,7 +21,7 @@ const interval = 75;
         category={entry.data.category}
         published={entry.data.published}
         updated={entry.data.updated}
-        url={getPostUrlBySlug(entry.slug)}
+        url={getPostUrlById(entry.id)}
         image={entry.data.image}
         description={entry.data.description}
         draft={entry.data.draft}

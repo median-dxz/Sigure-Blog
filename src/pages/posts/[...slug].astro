@@ -7,25 +7,24 @@ import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { formatDateToYYYYMMDD } from "@utils/common";
+import { getPostAssetBasePath } from "@utils/content-entry";
 import { getSortedPosts } from "@utils/ssr/content";
-import { getDir, getPostUrlBySlug } from "@utils/url";
+import { getPostUrlById } from "@utils/url";
 import { Icon } from "astro-icon/components";
-import path from "node:path";
-import { licenseConfig } from "src/config";
-import { profileConfig, siteConfig } from "../../config";
+import { render } from "astro:content";
+import { licenseConfig, profileConfig, siteConfig } from "../../config";
 
 export async function getStaticPaths() {
   const blogEntries = await getSortedPosts();
   return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
-
-const { remarkPluginFrontmatter } = await entry.render();
+const { Content, headings, remarkPluginFrontmatter } = await render(entry);
+const postAssetBasePath = getPostAssetBasePath(entry);
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -90,7 +89,7 @@ const jsonLd = {
           <ImageWrapper
             id="post-cover"
             src={entry.data.image}
-            basePath={path.join("content/posts/", getDir(entry.id))}
+            basePath={postAssetBasePath}
             class="mb-5 rounded-xl banner-container onload-animation animate-slide-up-fade-in-small"
           />
         )
@@ -129,7 +128,7 @@ const jsonLd = {
         licenseConfig.enable && (
           <License
             title={entry.data.title}
-            slug={entry.slug}
+            slug={entry.id}
             pubDate={entry.data.published}
             class="mb-6 rounded-xl license-container onload-animation animate-fade-in"
           />
@@ -140,7 +139,7 @@ const jsonLd = {
 
   <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
     <a
-      href={entry.data.nextSlug ? getPostUrlBySlug(entry.data.nextSlug) : "#"}
+      href={entry.data.nextSlug ? getPostUrlById(entry.data.nextSlug) : "#"}
       class:list={["w-full font-bold overflow-hidden active:scale-95", { "pointer-events-none": !entry.data.nextSlug }]}
     >
       {
@@ -156,7 +155,7 @@ const jsonLd = {
     </a>
 
     <a
-      href={entry.data.prevSlug ? getPostUrlBySlug(entry.data.prevSlug) : "#"}
+      href={entry.data.prevSlug ? getPostUrlById(entry.data.prevSlug) : "#"}
       class:list={["w-full font-bold overflow-hidden active:scale-95", { "pointer-events-none": !entry.data.prevSlug }]}
     >
       {

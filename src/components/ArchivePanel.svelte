@@ -1,24 +1,24 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  import { getPostUrlBySlug } from "@utils/url";
+  import { getPostUrlById } from "@utils/url";
   import I18nKey from "../i18n/i18nKey";
   import { i18n } from "../i18n/translation";
 
   interface Props {
-    tags: string[];
-    categories: string[];
+    tags?: string[];
+    categories?: string[];
     sortedPosts?: Post[];
   }
 
-  let { tags = $bindable(), categories = $bindable(), sortedPosts = [] }: Props = $props();
+  let { tags = $bindable([]), categories = $bindable([]), sortedPosts = [] }: Props = $props();
 
   interface Post {
-    slug: string;
+    id: string;
     data: {
       title: string;
       tags: string[];
-      category?: string;
+      category: string | null;
       published: Date;
     };
   }
@@ -134,7 +134,7 @@
 
       {#each group.posts as post}
         <a
-          href={getPostUrlBySlug(post.slug)}
+          href={getPostUrlById(post.id)}
           aria-label={post.data.title}
           class="group btn-plain block! h-10 w-full rounded-lg hover:text-[initial]"
         >
