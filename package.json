@@ -62,7 +62,7 @@
     "remark-sectionize": "^2.1.0",
     "sanitize-html": "^2.17.2",
     "svelte": "^5.55.1",
-    "three": "^0.180.0",
+    "three": "^0.183.2",
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
